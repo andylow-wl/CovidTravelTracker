@@ -1,5 +1,7 @@
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="data:,">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
@@ -8,138 +10,105 @@
     <link rel="stylesheet" type="text/css" href="jquery-ui.structure.min.css">
     <link rel="stylesheet" type="text/css" href="jquery-ui.theme.min.css">
     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous">
-</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
-  <p>Country <%- JSON.stringify(country.countries[0].name) %></p>
-  <p>Cases <%= JSON.stringify(country.countries[0].cases.confirmed) %></p>
-  <body id="markers-on-the-map"></body>
-       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <div id="map"></div>
+  <div class="row h-100">
+    <div class="col-md-4" style="background-color:lavender;">
+      <h3 class="text-primary">Country <%- JSON.stringify(country.countries[0].name) %>
+      </h3>
+      <p>Cases <%= JSON.stringify(country.countries[0].cases.confirmed) %>
+      </p>
+    </div>
+    <div id="map" class="col-md-8">
 
-    <script>
+      <body id="markers-on-the-map"></body>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </div>
+  </div>
+  <script>
 
-function addMarkerToGroup(group, coordinate, html) {
-  var marker = new H.map.Marker(coordinate);
-  marker.setData(html);
-  group.addObject(marker);
-}
+    function addMarkerToGroup(group, coordinate, html) {
+      var marker = new H.map.Marker(coordinate);
+      marker.setData(html);
+      group.addObject(marker);
+    }
 
-function addInfoBubble(map) {
-  var group = new H.map.Group();
-  map.addObject(group);
+    function addInfoBubble(map) {
+      var group = new H.map.Group();
+      map.addObject(group);
 
-  var cities= <%- JSON.stringify(cities) %>
-    var i;
-          for (i = 0; i < cities.length; i++) {
-              try {
-                  city_name = cities[i]['cityCode'];
-                  city_lat = cities[i]['lat'];
-                  city_lng = cities[i]['lng'];
-                  addMarkerToGroup(group, {
-                          lat: city_lat,
-                          lng: city_lng
-                      },
-                       city_name
-                  );
-              } catch (error) {
-                  console.log(error);
-              }
-          }
+      var cities = <%- JSON.stringify(cities) %>
+      var i;
+      for (i = 0; i < cities.length; i++) {
+        try {
+          cityName = cities[i]['cityCode'];
+          cityLat = cities[i]['lat'];
+          cityLng = cities[i]['lng'];
+          addMarkerToGroup(group, {
+            lat: cityLat,
+            lng: cityLng
+          },
+            cityName
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
-  group.addEventListener('tap', function(evt) {
-              $(document).ready(function() {
-                  $.ajax({
-                      method: 'GET',
-                      url: "/search",
-                      data: {
-                          'city': city_name
-                      },
-                      success: function(data) {
-                          var city_name = evt.target.getData();
-                          var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
-                              content: city_name + '<div>'
-                          });
-                          ui.addBubble(bubble);
-                      },
-                      error: function(data) {
-                          console.log("Travel Restrictions API - Error");
-                      }
-                  });
+      group.addEventListener('tap', function (evt) {
+        $(document).ready(function () {
+          var cityCode = evt.target.getData();
+          $.ajax({
+            method: 'GET',
+            url: "/search",
+            data: {
+              'cityCode': cityCode
+            },
+            success: function (data) {
+              var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
+                content: cityCode + '</div>'
               });
-          }, false);
+              ui.addBubble(bubble);
+            },
+            error: function (data) {
+              console.log("Travel Restrictions API - Error");
+            }
+          });
+        });
+      }, false);
 
-}
+    }
 
-/**
- * Boilerplate map initialization code starts below:
- */
-
-// initialize communication with the platform
-// In your own code, replace variable window.apikey with your own apikey
-var platform = new H.service.Platform({
-  apikey: ''
-});
-var defaultLayers = platform.createDefaultLayers();
-
-// initialize a map - this map is centered over Europe
-var map = new H.Map(document.getElementById('map'),
-  defaultLayers.vector.normal.map, {
-  center: {lat: 40.416775
-, lng: -3.703790},
-  zoom: 7,
-  pixelRatio: window.devicePixelRatio || 1
-});
-
-// add a resize listener to make sure that the map occupies the whole container
-window.addEventListener('resize', () => map.getViewPort().resize());
-
-// MapEvents enables the event system
-// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
-var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-
-// create default UI with layers provided by the platform
-var ui = H.ui.UI.createDefault(map, defaultLayers);
-
-// Now use the map as required...
-addInfoBubble(map);
-    </script>
-
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-   $(function(){
-      $('.searchName').autocomplete({
-         source: function(req, res){
-            $.ajax({
-               url:"airportSearch/",
-                dataType: "json",
-                type:"GET",
-                data:req,
-                success: function (data){
-                  res($.map(data, function(el){
-                     return {
-                        label: el.address.cityName +', ' +  el.name + ' (' + el.iataCode +')',
-                        value: el.iataCode
-                     }
-                  }));
-                },
-                error: function(err){
-                  console.log(err.status);
-                }
-            });
-         }        
-      });
+    var platform = new H.service.Platform({
+      apikey: ''
     });
- </script>
+    var defaultLayers = platform.createDefaultLayers();
 
+    var map = new H.Map(document.getElementById('map'),
+      defaultLayers.vector.normal.map, {
+      center: {
+        lat: 40.416775
+        , lng: -3.703790
+      },
+      zoom: 6,
+      pixelRatio: window.devicePixelRatio || 1
+    });
+
+    window.addEventListener('resize', () => map.getViewPort().resize());
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
+    addInfoBubble(map);
+  </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </body>
 </html>
