@@ -1,5 +1,4 @@
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,15 +22,23 @@
 
 <body>
   <div class="row h-100">
-    <div class="col-md-4" style="background-color:lavender;">
-      <h3 class="text-primary">Country <%- JSON.stringify(country.countries[0].name) %>
-      </h3>
-      <p>Cases <%= JSON.stringify(country.countries[0].cases.confirmed) %>
-      </p>
-    </div>
-    <div id="map" class="col-md-8">
+    <div id="map" class="col-md-7">
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </div>
+    <div class="col-md-5" style="background-color:lavender;">
+      <h3 class="text-primary">United States
+      </h3>
+      <p class="text-danger"><%- JSON.stringify(country.diseaseRiskLevel).replace(/['"]+/g, '')%> risk
+      </p>
+      <p>Cases: <%- JSON.stringify(country.diseaseCases.confirmed) %>
+      </p>
+      <p>Deaths: <%-JSON.stringify(country.diseaseCases.deaths) %>
+      </p>
+      <p><span class="font-weight-bold">Documents to enter the US</span><%- JSON.stringify(country.areaAccessRestriction.declarationDocuments.text).replace(/['"]+/g, '') %>
+      </p>
+      <p><span class="font-weight-bold">Tests to enter the US</span> <%- JSON.stringify(country.areaAccessRestriction.diseaseTesting.text).replace(/"/g, '') %>
+      </p>
     </div>
   </div>
   <script>
@@ -75,8 +82,9 @@
             success: function (data) {
               console.log(data)
               var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
-                content: cityCode + '</div>'
+                content: '<div><p>' + JSON.stringify(data.subAreas[0].area.name) + '</p>' + JSON.stringify(data.subAreas[0].summary).replace(/['"]+/g, '') + '</div>'
               });
+              alert("I am an alert box!");
               ui.addBubble(bubble);
             },
             error: function (data) {
@@ -96,10 +104,10 @@
     var map = new H.Map(document.getElementById('map'),
       defaultLayers.vector.normal.map, {
       center: {
-        lat: 40.416775
-        , lng: -3.703790
+        lat: 37.090240
+        , lng: -95.712891
       },
-      zoom: 6,
+      zoom: 4,
       pixelRatio: window.devicePixelRatio || 1
     });
 
@@ -111,5 +119,4 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
-
 </html>
