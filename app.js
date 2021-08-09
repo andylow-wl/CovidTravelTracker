@@ -2,6 +2,7 @@ var express = require("express");
 var Amadeus = require('amadeus');
 
 var amadeus = new Amadeus();
+var here_api_key = process.env.HERE_API_KEY;
 
 var app = express();
 app.set("view engine", "ejs");
@@ -13,14 +14,17 @@ app.get('/', (req, res, next) => {
   { countryCode: 'US' })
   .then(function (response) {
     const jsonCities = require("./cities");
-    res.render('index', { cities: jsonCities, message: response.data, country: response.data })
+    res.render('index', { cities: jsonCities, 
+                          message: response.data,
+                          country: response.data, 
+                          here_api_key: here_api_key })
   }).catch(function (error) {
     console.log(error.response);
   });
 });
 
 app.get('/search/', (req, res, next) => {
-  // the cityCode can be found at req.query.cityCode 
+   // Travel Restrictions API by city
   amadeus.client.get('/v1/duty-of-care/diseases/covid19-area-report', 
   { countryCode: 'US', 
     cityCode: req.query.cityCode })
