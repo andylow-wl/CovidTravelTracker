@@ -1,7 +1,10 @@
 var express = require("express");
 var Amadeus = require('amadeus');
 
-var amadeus = new Amadeus();
+var amadeus = new Amadeus({
+  clientId: process.env.AMADEUS_CLIENT_ID,
+  clientSecret: process.env.AMADEUS_CLIENT_SECRET
+});
 var here_api_key = process.env.HERE_API_KEY;
 
 var app = express();
