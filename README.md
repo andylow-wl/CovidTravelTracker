@@ -5,6 +5,8 @@ In this prototype built with Node and Express.js we demonstrate Travel Restricti
 - [HERE Maps for JavaScript](https://developer.here.com/): displays a map with markers and text bubbles
 
 
+![title](public/demo.gif)
+
 ## How to run the project locally
 
 Clone the repository.
