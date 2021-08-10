@@ -1,5 +1,5 @@
 {
-  "name": "Travel Restrictions",
+  "name": "travel-restrictions",
   "version": "1.0.0",
   "description": "Review travel restrictions",
   "main": "app.js",
