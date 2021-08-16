@@ -16,7 +16,7 @@ git clone https://github.com/amadeus4dev/amadeus-travel-restrictions-node.git
 cd amadeus-travel-restrictions-node
 ```
 
-Install the dependances
+Install the dependancies
 
 ```
 npm install
