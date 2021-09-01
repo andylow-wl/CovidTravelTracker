@@ -40,4 +40,4 @@ app.get('/search/', (req, res, next) => {
   });
 });
 
-app.listen(3000, () => console.log('App now running on port 3000!'));
+app.listen(8080, () => console.log('App now running on port 8080!'));
