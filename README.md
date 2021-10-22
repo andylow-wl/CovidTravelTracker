@@ -22,10 +22,10 @@ To start the image you have to provide the environment variables by passing them
 
 ```sh
 # passing environment variables to the run command
-docker run -e AMADEUS_CLIENT_ID=... -e AMADEUS_CLIENT_SECRET=... -e HERE_API_KEY=... -v 8080:8080 amadeus-travel-restrictions-node
+docker run -e AMADEUS_CLIENT_ID=... -e AMADEUS_CLIENT_SECRET=... -e HERE_API_KEY=... -p 8080:8080 amadeus-travel-restrictions-node
 
 # passing the environment variables from .env file
-docker run --env-file .env -v 8080:8080 amadeus-travel-restrictions-node
+docker run --env-file .env -p 8080:8080 amadeus-travel-restrictions-node
 ```
 
 ### Build and run with docker-compose
