@@ -18,7 +18,7 @@ You can build the container with the following command:
 docker build -t amadeus-travel-restrictions-node .
 ```
 
-To start the image you have to provide the environment variables by passing them direct to the docker run command or by copying and modifying `.env-default` to `.env` and pass it with `--env-file` to the run command.
+To start the image you have to provide the environment variables by passing them directly to the docker run command or by copying and modifying `.env-default` to `.env` and pass it with `--env-file` to the run command.
 
 ```sh
 # passing environment variables to the run command
