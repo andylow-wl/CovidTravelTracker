@@ -6,6 +6,49 @@ In this prototype built with Node and Express.js we demonstrate Travel Restricti
 
 ![title](public/demo.gif)
 
+## How to run the project via Docker (recommended)
+
+Build the image from the Dockerfile. This can be done with `docker build` or using the provided `docker-compose.yml` file.
+
+### Build and run with plain docker
+
+You can build the container with the following command:
+
+```sh
+docker build -t amadeus-travel-restrictions-node .
+```
+
+To start the image you have to provide the environment variables by passing them direct to the docker run command or by copying and modifying `.env-default` to `.env` and pass it with `--env-file` to the run command.
+
+```sh
+# passing environment variables to the run command
+docker run -e AMADEUS_CLIENT_ID=... -e AMADEUS_CLIENT_SECRET=... -e HERE_API_KEY=... -v 8080:8080 amadeus-travel-restrictions-node
+
+# passing the environment variables from .env file
+docker run --env-file .env -v 8080:8080 amadeus-travel-restrictions-node
+```
+
+### Build and run with docker-compose
+
+You can build the container with the following command:
+
+```sh
+docker-compose build
+```
+
+This is optional as docker-compose automatically builds the container if not done yet before the container starts.
+
+The environment variables can be updated in the file `docker-compose.yml` or by copying `.env-default` to `.env` and updating the relevant settings there.
+
+To start the container run:
+```sh
+docker-compose up
+
+# run in background
+docker-compose up -d
+```
+
+
 ## How to run the project locally
 
 Clone the repository.
@@ -15,7 +58,7 @@ git clone https://github.com/amadeus4dev/amadeus-travel-restrictions-node.git
 cd amadeus-travel-restrictions-node
 ```
 
-Install the dependancies
+Install the dependencies
 
 ```
 npm install
