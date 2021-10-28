@@ -4,6 +4,8 @@ In this prototype built with Node and Express.js we demonstrate Travel Restricti
 - [Travel Restrictions](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions): returns Travel Restrictions
 - [HERE Maps for JavaScript](https://developer.here.com/): displays a map with markers and text bubbles
 
+We've also hosted this [application](https://amadeus-travel-restrictions.herokuapp.com/) so you can directly play with it.
+
 ![title](public/demo.gif)
 
 ## How to run the project via Docker (recommended)
