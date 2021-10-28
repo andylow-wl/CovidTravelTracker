@@ -4,7 +4,7 @@
   "description": "Review travel restrictions",
   "main": "app.js",
   "scripts": {
-    "start": "app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\""
   },
   "author": "Anna Tsolakou",
