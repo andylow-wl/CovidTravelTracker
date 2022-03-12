@@ -10,6 +10,7 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  margin: 16px;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -54,15 +55,25 @@
 .dropdown a:hover {background-color: #ddd;}
 
 .show {display: block;}
+
+#searchButton {
+  background-color: grey;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin: 16px;
+}
+
 </style>
 </head>
 <body>
 
-<h2>Which country would you like to travel to?</h2>
-<p>Click on the button to open the dropdown menu, and use the input field to search for a specific country.</p>
+<h2>Where would you like to go?</h2>
 
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Select a Country</button>
+  <button onclick="myFunction()" class="dropbtn">Enter a destination Country</button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
     <a href="#us">United States</a>
@@ -75,12 +86,36 @@
   </div>
 </div>
 
+<div class="dropdown2">
+    <button onclick="myFunction2()" class="dropbtn">Enter a destination state (optional)</button>
+    <div id="myDropdown2" class="dropdown-content">
+      <input type="text" placeholder="Search.." id="myInput2">
+      <a href="#ws">Washington</a>
+      <a href="#hw">Hawaii</a>
+      <a href="#ms">Mississippi</a>
+      <a href="#nj">New Jersey</a>
+      <a href="#ny">New York</a>
+      <a href="#oo">Ohio</a>
+    </div>
+  </div>
+
+<div class = "searchButton">
+    <button id = "searchButton" type = "button" onclick="savetofs()"> Search </button>
+</div>
+
+
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
+
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show");
+}
+
+
 
 function filterFunction() {
   var input, filter, ul, li, a, i;
@@ -99,49 +134,11 @@ function filterFunction() {
 }
 </script>
 
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="container">
-       <div class="col-md-4">
-          <div class="panel panel-danger">
-             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-twitter-square" aria-hidden="true"></i>
-                   Solodev Live
-                </h3>
-             </div>
-             <div class="panel-body">
-                <a class="twitter-timeline" href="https://twitter.com/WHO?ref_src=twsrc%5Etfw">Tweets by WHO</a>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="col-md-4">
-    </div>
- </div>
- <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
- <style>
- .twitter-timeline {
-    max-width: 100%;
-    max-height: 1000px;
-  }
-  .fa {
-    font-size: 25px;
-    color: #FFFFFF;
-  }
-  .panel-title {
-   font-size: 25px; 
-   color: #FFFFFF;
-   font-family: 'Open Sans', sans-serif;
-  }
-  .panel-heading {
-   background-color: #1da1f2 !important;;
-   color: #1da1f2 !important;;
-  }
-  .panel {
-   margin-top: 25px;
-  }
-</style>
+
+
+
+
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
