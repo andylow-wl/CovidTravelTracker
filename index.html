@@ -72,35 +72,20 @@
 
 <h2>Where would you like to go?</h2>
 
+<script src="try.js"></script>
+
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Enter a destination Country</button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="#us">United States</a>
-    <a href="#japan">Japan</a>
-    <a href="#korea">Korea</a>
-    <a href="#malaysia">Malaysia</a>
-    <a href="#indonesia">Indonesia</a>
-    <a href="#india">India</a>
-    <a href="#russia">Russia</a>
+    <a href="US" onClick="getStuffs()">United States</a>
+    <a href="JP" onClick="getStuffs()">Japan</a>
+    <a href="#korea" onClick="getStuffs()" >Korea</a>
+    <a href="#malaysia" onClick="getStuffs()" >Malaysia</a>
+    <a href="#indonesia" onClick="getStuffs()" >Indonesia</a>
+    <a href="#india" onClick="getStuffs()">India</a>
+    <a href="#russia" onClick="getStuffs()">Russia</a>
   </div>
-</div>
-
-<div class="dropdown2">
-    <button onclick="myFunction2()" class="dropbtn">Enter a destination state (optional)</button>
-    <div id="myDropdown2" class="dropdown-content">
-      <input type="text" placeholder="Search.." id="myInput2">
-      <a href="#ws">Washington</a>
-      <a href="#hw">Hawaii</a>
-      <a href="#ms">Mississippi</a>
-      <a href="#nj">New Jersey</a>
-      <a href="#ny">New York</a>
-      <a href="#oo">Ohio</a>
-    </div>
-  </div>
-
-<div class = "searchButton">
-    <button id = "searchButton" type = "button" onclick="savetofs()"> Search </button>
 </div>
 
 
@@ -111,11 +96,11 @@ function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function myFunction2() {
-  document.getElementById("myDropdown2").classList.toggle("show");
+function getStuffs(){
+  var code =document.getElementById("myDropdown").href;
+  getDetails(); 
+  alert("The function called 'getDetails' has been called.");
 }
-
-
 
 function filterFunction() {
   var input, filter, ul, li, a, i;
@@ -137,13 +122,9 @@ function filterFunction() {
 
 
 
-
-
-
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </body>
 </html>
-
