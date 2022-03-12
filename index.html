@@ -105,9 +105,9 @@ function myFunction() {
 }
 
 function getStuffs(){
-  //var code =document.getElementById("myDropdown").href;
-  var country = "FUCK YOU"
-  document.write(country);
+  var code =document.getElementById("myDropdown").href; // get the country code from the href
+  var country = getDetails(code); // call getDetails function from try.js using country code as the parameter, a json file should be return
+  document.write(country);  // by right should print a json file, we can use this to fill the html div above to display the details
 }
 
 function filterFunction() {
