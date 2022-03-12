@@ -17,18 +17,7 @@
   background-color: #3e8e41;
 }
 
-#myInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
-}
 
-#myInput:focus {outline: 3px solid #ddd;}
 
 .dropdown {
   position: relative;
@@ -88,6 +77,25 @@
   </div>
 </div>
 
+<div class="row h-100">
+  <div class="col-md-4">
+    <h3 class="text-info">United States
+    </h3>
+    <p class="text-danger"><%- JSON.stringify(country.diseaseRiskLevel).replace(/['"]+/g, '')%> risk
+    </p>
+    <p>Cases: <%- JSON.stringify(country.diseaseCases.confirmed) %>
+    </p>
+    <p>Deaths: <%-JSON.stringify(country.diseaseCases.deaths) %>
+    </p>
+    <p><span class="font-weight-bold">Documents to enter the US</span><%- JSON.stringify(country.areaAccessRestriction.declarationDocuments.text).replace(/['"]+/g, '') %>
+    </p>
+    <p><span class="font-weight-bold">Tests to enter the US</span> <%- JSON.stringify(country.areaAccessRestriction.diseaseTesting.text).replace(/"/g, '') %>
+    </p>
+  </div>
+  <div id="map" class="col-md-8">
+  </div>
+</div>
+
 
 <script>
 /* When the user clicks on the button,
@@ -97,9 +105,9 @@ function myFunction() {
 }
 
 function getStuffs(){
-  var code =document.getElementById("myDropdown").href;
-  getDetails(); 
-  alert("The function called 'getDetails' has been called.");
+  //var code =document.getElementById("myDropdown").href;
+  var country = "FUCK YOU"
+  document.write(country);
 }
 
 function filterFunction() {
@@ -119,12 +127,6 @@ function filterFunction() {
 }
 </script>
 
-
-
-
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </body>
 </html>
