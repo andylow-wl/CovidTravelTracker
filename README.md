@@ -94,7 +94,7 @@ Finally, run the Node server.
 node app.js
 ```
 
-Finally, open a browser and go to `http://localhost:3000/`.
+Finally, open a browser and go to `http://localhost:5000/`.
 
 ## License
 
