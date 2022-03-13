@@ -1,3 +1,5 @@
+import Web3 from 'web3';
+
 function getDetails(code){    
     var Amadeus = require('amadeus');
 

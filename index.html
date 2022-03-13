@@ -63,9 +63,9 @@
   <button onclick="myFunction()" class="dropbtn">Enter a destination Country</button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="US" onClick="getStuffs()">United States</a>
-    <a href="JP" onClick="getStuffs()">Japan</a>
-    <a href="KR" onClick="getStuffs()" >Korea</a>
+    <a href="#US" onClick="getStuffs()">United States</a>
+    <a href="#JP" onClick="getStuffs()">Japan</a>
+    <a href="#KR" onClick="getStuffs()" >Korea</a>
     <a href="#malaysia" onClick="getStuffs()" >Malaysia</a>
     <a href="#indonesia" onClick="getStuffs()" >Indonesia</a>
     <a href="#india" onClick="getStuffs()">India</a>
@@ -92,7 +92,7 @@
   </div>
 </div>
 
- //<script src="try.js"></script>
+ <script type="module" script src="try.js"></script>
 
 <script>
 /* When the user clicks on the button,
@@ -102,9 +102,9 @@ function myFunction() {
 }
 
 function getStuffs(){
-  var code =document.getElementById("myDropdown").href; // get the country code from the href
+  var code =document.getElementById("myDropdown").href.value; // get the country code from the href
   console.log(code);
-  var country = getDetails(); // call getDetails function from try.js using country code as the parameter, a json file should be return
+  var country = getDetails("US"); // call getDetails function from try.js using country code as the parameter, a json file should be return
   console.log(country);  // by right should print a json file, we can use this to fill the html div above to display the details
 }
 
