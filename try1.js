@@ -6,16 +6,14 @@ var amadeus = new Amadeus({
     });
 
 
-  
-
-var code = "US";
+var code = "JP";
     
 // Travel Restrictions API by country
 var output = amadeus.client.get('/v1/duty-of-care/diseases/covid19-area-report',
     { countryCode: code })
     .then(function (response) {
         //const jsonCities = require("./cities");
-        var json = response.data
+        var json = response.data;
         console.log(json);
         //console.log(jsonCities);
       }).catch(function (error) {

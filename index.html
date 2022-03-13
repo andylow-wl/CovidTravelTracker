@@ -52,16 +52,12 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
-  margin: 16px;
 }
-
 </style>
 </head>
 <body>
 
 <h2>Where would you like to go?</h2>
-
-<script src="try.js"></script>
 
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Enter a destination Country</button>
@@ -96,6 +92,7 @@
   </div>
 </div>
 
+ //<script src="try.js"></script>
 
 <script>
 /* When the user clicks on the button,
@@ -106,8 +103,9 @@ function myFunction() {
 
 function getStuffs(){
   var code =document.getElementById("myDropdown").href; // get the country code from the href
-  var country = getDetails(code); // call getDetails function from try.js using country code as the parameter, a json file should be return
-  document.write(country);  // by right should print a json file, we can use this to fill the html div above to display the details
+  console.log(code);
+  var country = getDetails(); // call getDetails function from try.js using country code as the parameter, a json file should be return
+  console.log(country);  // by right should print a json file, we can use this to fill the html div above to display the details
 }
 
 function filterFunction() {

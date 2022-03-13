@@ -1,4 +1,4 @@
-function getDetails(code){    
+function getDetails(){    
     var Amadeus = require('amadeus');
 
     var amadeus = new Amadeus({
@@ -6,13 +6,15 @@ function getDetails(code){
     clientSecret: 'FjthFeiXCnw4KX9D'
     });
 
+    var code = "US";
     // Travel Restrictions API by country
     var output = amadeus.client.get('/v1/duty-of-care/diseases/covid19-area-report',
     { countryCode: code })
     .then(function (response) {
         //const jsonCities = require("./cities");
-        var json = response.data
-        return json;
+        var json = response.data;
+        console.log(json);
+        //return json;
         //console.log(jsonCities);
     }).catch(function (error) {
         console.log(error.response);
