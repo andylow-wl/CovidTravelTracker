@@ -6,7 +6,6 @@ function getDetails(code){
     clientSecret: 'FjthFeiXCnw4KX9D'
     });
 
-    var code = "US";
     // Travel Restrictions API by country
     var output = amadeus.client.get('/v1/duty-of-care/diseases/covid19-area-report',
     { countryCode: code })
