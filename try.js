@@ -1,4 +1,4 @@
-function getDetails(){    
+function getDetails(code){    
     var Amadeus = require('amadeus');
 
     var amadeus = new Amadeus({
