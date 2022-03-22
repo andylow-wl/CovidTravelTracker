@@ -1,33 +1,36 @@
 <template>
     <div id="container">
-        <form id="userForm" @submit.prevent="searchAPI">
+        <form id="userForm">
             <h2 class="titleofDiv">Enter your Destination Country</h2>
             <div class="formli">
-                <input type="text" id="destCountry" required="" placeholder="Destination Country" 
-                v-model="destCountry"><br><br>
-                <div class = "search">
-                    <button id="searchButton" type="button" @click="searchAPI()">Search</button>
-                </div>
+                <SearchAutocomplete @selected="countryToCode"/>
             </div>
         </form>
         <p>Destination Country: {{countryCode}}</p>
     </div>
+    
 </template>
 
 <script>
     console.log("In EnterDestination")
+
+    import SearchAutocomplete from '@/components/SearchAutocomplete.vue'
+
     export default {
+        name: 'EnterDestination',
         
+        components: {
+            SearchAutocomplete,
+        },
 
         data() {
             return {
-                destCountry:"", 
                 countryCode:"",
             }
         },
 
         methods: {
-            async searchAPI() {
+            async countryToCode(destCountry) {
                 var country_code_dict = {
                 "Australia": "AU",
                 "Brunei": "BN",
@@ -54,13 +57,13 @@
                 "United Kingdom": "GB",
                 "United States": "US", 
             }  
-                console.log(this.destCountry)
+                console.log(destCountry)
                 try {
-                    this.countryCode = country_code_dict[this.destCountry]
+                    this.countryCode = country_code_dict[destCountry]
                 } catch {
                     this.countryCode = "error"
                 }
-            }
+            },
         }
     }
 </script>
