@@ -7,6 +7,7 @@
             </div>
         </form>
         <p>Destination Country: {{countryCode}}</p>
+        <p> Request: {{results}}</p>
     </div>
     
 </template>
@@ -26,10 +27,29 @@
         data() {
             return {
                 countryCode:"",
+                results: "",
             }
         },
 
         methods: {
+            async getData(queryCountryCode) {
+                const Amadeus = require("amadeus")
+                const amadeus = new Amadeus({
+                clientId: "mI8eIig47TqnEx3hMJXmL8arVfX2EKxG",
+                clientSecret: "AavRlk6yEoE9knt4"
+                });
+                const query = {
+                    countryCode: queryCountryCode
+                };
+                amadeus.client.get('/v1/duty-of-care/diseases/covid19-area-report', query)
+                .then(function(response) {
+                    this.results = response
+                    console.log(response)
+                }).catch(function(responseError) {
+                    console.log(responseError)
+                });
+                },
+
             async countryToCode(destCountry) {
                 var country_code_dict = {
                 "Australia": "AU",
@@ -62,6 +82,9 @@
                     this.countryCode = country_code_dict[destCountry]
                 } catch {
                     this.countryCode = "error"
+                }
+                if (this.country != "error") {
+                    await this.getData(this.countryCode)
                 }
             },
         }
