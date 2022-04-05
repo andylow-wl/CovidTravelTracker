@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p>{{country}}</p>
     <select v-model="selected">
     <option value="">Please select time period</option>
     <option>Last 30 Days</option>
@@ -31,9 +32,9 @@ const db = getFirestore(firebaseApp);
 export default {
 
     name:'Charts',
-    //props: {
-       // countryProp: String
-    //},
+    props: {
+       countryProp: String
+    },
     data(){
         return{
             chartdata: {},
@@ -47,18 +48,28 @@ export default {
 
     mounted(){
         const self = this
-        display();
+ 
+        console.log("country:"  + self.country)
 
-        async function display(){
+
+},
+    watch: {
+        
+        countryProp: async function(x) {
+            const self = this
+            console.log("prop changed:" + x)
+            this.country = x
             let obj = new Object();
-            //change "China" to self.country
-            let z = await getDocs(collection(db, "China"));
+            //change "Australia" to self.country
+            let z = await getDocs(collection(db, x));
             z.forEach((d) => obj[d.data().date] = d.data().Cases);         
             let date = []
             let cases = []
             let casesDaily = []
             z.forEach((d) => date.push(d.data().date))
             z.forEach((d) => cases.push(d.data().Cases))
+            console.log("cases")
+            console.log(cases)
             for (let i = 1; i < cases.length; i++) {
                 casesDaily[i] = cases[i] - cases[i - 1]
             }
@@ -79,10 +90,8 @@ export default {
             self.weekData = weekData
             self.twoWeekData = twoWeekData
 
-            console.log(cases)
-            console.log(casesDaily)
+        }
     }
-},
 
     
 }
