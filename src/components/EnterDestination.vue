@@ -20,6 +20,7 @@
         <p> Mask Policy : {{this.mask}} </p>
         <p> Quarantine Policy : {{this.quarantine}} </p>
         <p> Tracing Application Requirement :{{this.tracing}} </p>
+        <Charts :countryProp = "destCountry"/>
     </div>
     
 </template>
@@ -27,11 +28,13 @@
 <script>
     console.log("In EnterDestination")
     import SearchAutocomplete from '@/components/SearchAutocomplete.vue'
+    import Charts from '@/components/Charts.vue'
     export default {
         name: 'EnterDestination',
         
         components: {
             SearchAutocomplete,
+            Charts
         },
         data() {
             return {
