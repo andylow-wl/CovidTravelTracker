@@ -1,6 +1,5 @@
 <template>
     <div>
-        <p>{{country}}</p>
     <select v-model="selected">
     <option value="">Please select time period</option>
     <option>Last 30 Days</option>
@@ -92,8 +91,6 @@ export default {
 
         }
     }
-
-    
 }
 </script>
 <style scoped>

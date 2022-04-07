@@ -20,6 +20,7 @@
         <p> Mask Policy : {{this.mask}} </p>
         <p> Quarantine Policy : {{this.quarantine}} </p>
         <p> Tracing Application Requirement :{{this.tracing}} </p>
+        <p> For more information, please refer to :{{this.link}}</p>
         <Charts :countryProp = "destCountry"/>
     </div>
     
@@ -102,15 +103,7 @@
                         //this.maskDate = x.data.areaAccessRestriction.mask.date 
                         this.quarantine =  x.data.areaAccessRestriction.quarantineModality.text.replaceAll("<p>","").replaceAll("</p>","") 
                         this.tracing =  x.data.areaAccessRestriction.tracingApplication.text.replaceAll("<p>","").replaceAll("</p>","") 
-
-
-                        
-
-                        
-                        
-                        
-        
-                        
+                        this.link = x.data.areaPolicy.referenceLink
                         });
                 
             },
