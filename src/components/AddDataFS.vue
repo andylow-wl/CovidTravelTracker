@@ -1,5 +1,5 @@
 <template>
-    <button @click="fetchCovidCase()">test</button>
+    <button @click="fetchCovidCase()">Update Charts</button>
 </template>
 <script>
 import axios from 'axios'
@@ -13,7 +13,6 @@ export default {
     data() {
         return  {
             AU : '',
-            AU_nc : {},
             CN : '',
             ID : '',
             JP : '',
@@ -62,7 +61,7 @@ export default {
                 Country: "Japan", date: data["Date"], Cases: data["Cases"]
             }))            
             await axios.get('https://api.covid19api.com/total/country/' + 'KR' + '/status/confirmed?from=' + startdate + '&to=' + enddate).then(response => (this.KR = response))
-            this.KR.data.forEach(data => setDoc(doc(db, "South Korea", data["Date"]), {
+            this.KR.data.forEach(data => setDoc(doc(db, "Korea", data["Date"]), {
                 Country: "South Korea", date: data["Date"], Cases: data["Cases"]
             }))            
             await axios.get('https://api.covid19api.com/total/country/' + 'MY' + '/status/confirmed?from=' + startdate + '&to=' + enddate).then(response => (this.MY = response))
@@ -70,13 +69,12 @@ export default {
                 Country: "Malaysia", date: data["Date"], Cases: data["Cases"]
             }))            
             await axios.get('https://api.covid19api.com/total/country/' + 'US' + '/status/confirmed?from=' + startdate + '&to=' + enddate).then(response => (this.US = response))
-            this.US.data.forEach(data => setDoc(doc(db, "USA", data["Date"]), {
+            this.US.data.forEach(data => setDoc(doc(db, "United States", data["Date"]), {
                 Country: "USA", date: data["Date"], Cases: data["Cases"]
             }))
         }
     },
     mounted() {
-        console.log(this.AU)
     },
 }
 </script>
