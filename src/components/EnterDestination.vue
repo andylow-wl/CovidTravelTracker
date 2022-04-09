@@ -127,28 +127,28 @@
 </template>
       
 <script>
-    console.log("In EnterDestination");
+console.log("In EnterDestination");
 
-    import SearchAutocomplete from "@/components/SearchAutocomplete.vue";
-    import Charts1 from "@/components/Charts1.vue";
-    export default {
-        name: "App",
-        components: {
-            SearchAutocomplete,
-            Charts1,
-        },
+import SearchAutocomplete from "@/components/SearchAutocomplete.vue";
+import Charts1 from "@/components/Charts1.vue";
+export default {
+  name: "App",
+  components: {
+    SearchAutocomplete,
+    Charts1,
+  },
 
-        data() {
-            return {
-            countryCode: "",
-            destCountry: false,
-            diseaseLevel: "",
-            diseaseDate: "",
-            cases: "",
-            caseDate: "",
-            summary: "",
-            };
-        },
+  data() {
+    return {
+      countryCode: "",
+      destCountry: false,
+      diseaseLevel: "",
+      diseaseDate: "",
+      cases: "",
+      caseDate: "",
+      summary: "",
+    };
+  },
         methods: {
             async countryToCode(destCountry) {
                 var country_code_dict = {

@@ -22,7 +22,6 @@ export default {
         display: inline-block;
         vertical-align: middle;
         padding: 0.2em;
-
     }
 
     .logo {
@@ -44,6 +43,7 @@ export default {
         padding: 0;
         list-style: none;
     }
+
 
     
     nav li {
