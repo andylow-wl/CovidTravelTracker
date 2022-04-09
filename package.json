@@ -1,5 +1,5 @@
 {
-  "name": "version_15032022",
+  "name": "bt3103_covid_tracker",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@dafcoe/vue-collapsible-panel": "^0.2.0",
     "amadeus": "^5.7.1",
     "axios": "^0.26.1",
     "chart.js": "^3.7.1",

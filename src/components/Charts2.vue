@@ -5,18 +5,18 @@
     <option>Last 30 Days</option>
     <option>Last 2 Weeks</option>
     <option>Last Week</option>
-    </select>,<br><br>
-    <span>Selected: {{ selected }}</span>
+    </select><br><br>
+    <!-- <span>Selected: {{ selected }}</span> -->
     <div v-if="selected=='Last 30 Days'">
-    <line-chart class ="user" width=600px :min= null :data= "chartdata"></line-chart>
+    <line-chart class ="user" width=100%  :min= null :data= "chartdata"></line-chart>
     </div>
 
     <div v-if="selected=='Last 2 Weeks'">
-    <line-chart class ="user" width=600px :min= null :data= "twoWeekData"></line-chart>
+    <line-chart class ="user" width=100%  :min= null :data= "twoWeekData"></line-chart>
     </div>
 
     <div v-if="selected=='Last Week'">
-    <line-chart class ="user" width=600px :min= null :data= "weekData"></line-chart>
+    <line-chart class ="user" width=100%  :min= null :data= "weekData"></line-chart>
     </div>
 
     </div>
