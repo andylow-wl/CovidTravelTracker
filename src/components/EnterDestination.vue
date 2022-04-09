@@ -1,19 +1,38 @@
 <template>
-<!DOCTYPE html>
-    <html>
-    <head>
-    <title>W3.CSS Template</title>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
 <body class="w3-light-grey">
 
-    <div id="container">
+    <div class="banner">
+        <table class="banner-left">
+            <tr><td><h2 class="banner-h2">Where would you like to go?</h2></td></tr>
+            <!--Source: https://codepen.io/jcoulterdesign/pen/OMOqjy-->
+            <!-- Spent close to 3hours debugging this... -->
+            <tr><td><div class="content">
+                <div class="circle">
+                <div class="circle_title">
+                </div>
+                <div class="circle_inner">
+                    <div class="circle_inner__layer">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc7.png"/>
+                    <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc1.png"/> -->
+                    </div>
+                    <div class="circle_inner__layer">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc8.png"/>
+                    </div>
+                    <div class="circle_inner__layer">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc9.png"/>
+                    </div>
+                </div>
+                <div class="content_shadow"></div>
+                </div>
+            </div></td></tr>
+        </table>
+    
         <form id="userForm">
-            <h2 class="titleofDiv">Enter your Destination Country(Click on the selected country)</h2>
+            <i class="fa fa-search w3-text-gray w3-large"></i>
             <div class="formli">
                 <SearchAutocomplete @selected="countryToCode"/>
             </div>
@@ -21,87 +40,114 @@
     </div>
 
     <div v-if=destCountry>
-    <p>Destination Country: {{this.destCountry}}</p>
-    <div v-html="this.summary"></div>
-    <div class="w3-panel">
-        <div class="w3-row-padding" style="margin:0 -16px">
-        <div class="w3-third">
-            <h5>Covid Cases across time</h5>
-            <Charts1 :countryProp = "destCountry"/>
-        </div>
-    <div class="w3-twothird">
-
-            <h5>Statistics</h5>
-            <table class="w3-table w3-striped w3-white">
-            <tr>
-                <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-                <td>Disease Risk Level:{{this.diseaseLevel}} </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-                <td>Number of active cases : {{this.cases}} </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-                <td> Percentage fully vaccinated : {{this.dose}}%</td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-                <td>The hotspot areas are : <div v-html="this.hotSpot"></div> </td>
-            </tr>
-            </table>
-    </div>
-    </div>
-    </div>
-
-    <div class = "w3 panel"> 
-        <h5>Travel Requirements</h5>
-            <table class="w3-table w3-striped w3-white">
+    <h1>{{this.destCountry}}</h1>
+    <div class = "w3 panel">
+        <div class="w3-row-padding" style="display: flex; height: 35em;"> 
+            <div class="w3-half w3-striped w3-white" style="margin: auto; min-height: 100%">
+                <div v-html="this.summary" style="display: inline-block; position: relative; text-align: justify; padding: 1em;"></div>
+            </div>
+            <div class="w3-half">
+                <table class="w3-table w3-striped w3-white" style="margin: auto; min-height: 100%">
                 <tr>
                     <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-                    <td> Documents required: <div v-html="this.document"></div> </td>
+                    <td><b>Mask Policy : </b><div v-html="this.mask" style="display: inline-block; position: relative; text-align: justify; padding: 1em;"></div> </td>
                 </tr>
                 <tr>
                     <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-                    <td>Vaccination Policy : {{this.vaccine}}  </td>
+                    <td><b> Tracing Application Requirement : </b><div v-html="this.tracing" style="display: inline-block; position: relative; text-align: justify; padding: 1em; height: 100%"></div> </td>
+                </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="w3-panel" style="padding: 1em;">
+        <div class="w3-row-padding" style="display: flex; height: 25em;">
+            <div class="w3-half" style="margin: auto; min-height: 100%">
+                <h5 style="font-weight: bold;">Covid Cases across</h5>
+                <Charts1 :countryProp = "destCountry"/>
+            </div>
+            <div class="w3-half">
+                <h5 style="font-weight: bold;">Statistics</h5>
+                <table class="w3-table w3-striped w3-white" style="margin: auto; min-height: 100%">
+                <tr>
+                    <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+                    <td><b>Disease Risk Level : </b>{{this.diseaseLevel}} </td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+                    <td><b>Number of active cases : </b>{{this.cases}} </td>
                 </tr>
                 <tr>
                     <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-                    <td> Pre Flight testing required : <div v-html="this.testing"></div> </td>
+                    <td><b>Percentage fully vaccinated : </b>{{this.dose}}%</td>
                 </tr>
                 <tr>
                     <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-                    <td>Entry Restrictions : <div v-html="this.entryRestriction"></div> </td>
+                    <td><b>The hotspot areas are : </b><div v-html="this.hotSpot"></div> </td>
                 </tr>
-                <tr>
-                    <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
-                    <td>Exit Restrictions : <div v-html="this.exitRestriction"></div> </td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-                    <td> Quarantine Policy : <div v-html="this.quarantine"></div> </td>
-                </tr>
-            </table>
+                </table>
+            </div>
+        </div>
     </div>
+    <br>
 
-      <div class = "w3 panel"> 
-        <h5>Domestic Requirements</h5>
+    <div class = "w3 panel"> 
+        <h1>Travel Requirements</h1>
             <table class="w3-table w3-striped w3-white">
                 <tr>
                     <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-                    <td>Mask Policy : <div v-html="this.mask"></div> </td>
+                    <td><b>Documents required : </b><div v-html="this.document"></div> </td>
                 </tr>
                 <tr>
                     <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-                    <td>Tracing Application Requirement :<div v-html="this.tracing"></div> </td>
+                    <td><b>Vaccination Policy : </b>{{this.vaccine}}  </td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+                    <td><b>Pre Flight testing required : </b><div v-html="this.testing"></div> </td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+                    <td><b>Entry Restrictions : </b><div v-html="this.entryRestriction"></div> </td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+                    <td><b>Exit Restrictions : </b><div v-html="this.exitRestriction"></div> </td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+                    <td><b>Quarantine Policy : </b><div v-html="this.quarantine"></div> </td>
                 </tr>
             </table>
-                   For more information, please refer to : <div v-html="this.link"></div>
+        </div>
+        <p>For more information, please refer to : </p><div v-html="this.link"></div>
+    <hr>
     </div>
-  <hr>
-  </div>
+  </body>
+</template>
+      
+<script>
+    console.log("In EnterDestination");
 
-            }
+    import SearchAutocomplete from "@/components/SearchAutocomplete.vue";
+    import Charts1 from "@/components/Charts1.vue";
+    export default {
+        name: "App",
+        components: {
+            SearchAutocomplete,
+            Charts1,
+        },
+
+        data() {
+            return {
+            countryCode: "",
+            destCountry: false,
+            diseaseLevel: "",
+            diseaseDate: "",
+            cases: "",
+            caseDate: "",
+            summary: "",
+            };
         },
         methods: {
             async countryToCode(destCountry) {
@@ -113,8 +159,8 @@
                 "Korea": "KR",
                 "Malaysia": "MY",
                 "United States": "US", 
-            }  
-                 try {
+                }  
+                try {
                     this.countryCode = country_code_dict[destCountry]
                     this.destCountry = destCountry
                     console.log(this.countryCode)
@@ -157,33 +203,156 @@
                         this.quarantine =  x.data.areaAccessRestriction.quarantineModality.text
                         this.tracing =  x.data.areaAccessRestriction.tracingApplication.text
                         this.link = "<a href=\"" + x.data.areaPolicy.referenceLink + "\" target=\"_blank\" rel=\"noopener\">"+  x.data.areaPolicy.referenceLink + "\"</a>" 
-                        });
+                    });
                 
             },
-        
         }
-        
     }
 </script>
 
-<style>
-    h2{
-        background-color: rgb(129,184,99);
+<style scoped>
+    .banner {
+        display: flex;
+        height: 40em;
     }
     .formli{
-        display: inline-block;
-        text-align: right;
+        text-align: center;
+        padding-left: 0.5em;
+        position: absolute;
     }
     form {
-        text-align: center;
+        width: 33%;
+        text-align: left;
         align-items: center;
         margin: auto;
     }
-    .search{
+    .banner-left {
+        width: 66%;
+        margin:auto;
+    }
+    .banner-h2 {
+        display: inline-block;
+        font-size: 3em;
+        font-weight: bolder;
+        background-color: transparent;
+    }
+    
+    .content {
+        display: inline-block;
+        align-items: center;
+        max-width: 300px;
+    }
+    #circle-h2 {
+        background-color: transparent;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    #circle-h3 {
+        color:#F28C28;
+    }
+    .circle_inner__layer {
+        width: 600px;
+        height: 200px;
+        transition: all 0.4s;
+        position: absolute;
+        top: 0;
+        left: -200px;
+    }
+    .circle_inner__layer img {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+    }
+    .circle {
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 50%;
+        width: 200px;
+        /* transform: translateY(20%); */
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    .circle:hover h2, .circle:hover h3 {
+        opacity: 1;
+        left: 10em;
+        top: 8em;
+    }
+    .circle:hover .content_shadow {
+        transform: scale(1.1);
+        top: -22px;
+    }
+    .circle:hover h3 {
+        transition: all 0.2s 0.04s;
+    }
+    .circle:hover h2 {
+        transition: all 0.2s;
+    }
+    .circle .circle_inner__layer:nth-of-type(1) {
+        top: 0px;
+        left: 0px;
+    }
+    .circle .circle_inner__layer:nth-of-type(2) {
+        top: 0px;
+        left: -210px;
+    }
+    .circle .circle_inner__layer:nth-of-type(3) {
+        top: 0px;
+        left: -440px;
+    }
+    .circle_title {
         text-align: center;
     }
-    #searchButton:hover {
-        background-color: aquamarine;
+    .circle_title h2, .circle_title h3 {
+        opacity: 0;
+        margin: 0;
+        transition: all 0.2s 0.04s;
+        position: relative;
+    }
+    .circle_title h3 {
+        transition: all 0.2s;
+    }
+    .circle_inner {
+        border-radius: 200px;
+        background: #b0d5d6;
+        overflow: hidden;
+        width: 200px;
+        z-index: 1;
+        transition: all 0.3s;
+        height: 200px;
+        position: relative;
+    }
+    .circle_inner:hover {
+        transform: scale(1.1);
+    }
+    .circle_inner:hover .circle_inner__layer:nth-of-type(1) {
+        left: -80px;
+        transition: all 4s linear;
+    }
+    .circle_inner:hover .circle_inner__layer:nth-of-type(2) {
+        left: -400px;
+        transition: all 4s linear;
+    }
+    .circle_inner:hover .circle_inner__layer:nth-of-type(3) {
+        left: -140px;
+        transition: all 4s linear;
+    }
+    .content_shadow {
+        width: 200px;
+        box-shadow: 0px 31px 19px -2px #e0e8f9;
+        height: 20px;
+        border-radius: 70%;
+        transition: all 0.3s;
+        z-index: 0;
+    }
+    h1 {
         font-weight: bolder;
+        width: 100%;
+        background-color: rgb(21, 21, 21);
+        color: white;
+    }
+    tr {
+        padding: 3em;
     }
 </style>

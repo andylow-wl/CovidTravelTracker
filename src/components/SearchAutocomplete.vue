@@ -153,7 +153,7 @@
 
   .autocomplete-result.is-active,
   .autocomplete-result:hover {
-    background-color: #4AAE9B;
-    color: white;
+    background-color: #F28C28;
+    color: black;
   }
 </style>
