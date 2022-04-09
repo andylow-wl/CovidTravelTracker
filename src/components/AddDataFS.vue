@@ -1,5 +1,6 @@
 <template>
-    <button @click="fetchCovidCase()">Update Charts</button>
+    <!--<button @click="fetchCovidCase()">Update Charts</button>-->
+    <div></div>
 </template>
 <script>
 import axios from 'axios'
