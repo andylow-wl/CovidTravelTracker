@@ -100,31 +100,7 @@
     </div>
   <hr>
   </div>
-</body>
-</html>    
-</template>
 
-<script>
-    console.log("In EnterDestination")
-    import SearchAutocomplete from '@/components/SearchAutocomplete.vue'
-    import Charts1 from '@/components/Charts1.vue'
-    export default {
-        name: 'EnterDestination',
-        
-        components: {
-            SearchAutocomplete,
-            Charts1
-        },
-        data() {
-            return {
-                countryCode:"",
-                destCountry:false,
-                diseaseLevel:"",
-                diseaseDate:"",
-                cases:"",
-                caseDate:"",
-                summary:"",
-                document:this.doucment
             }
         },
         methods: {
