@@ -18,15 +18,16 @@
                 <SearchAutocomplete @selected="countryToCode"/>
             </div>
         </form>
-        <p>Destination Country: {{this.destCountry}}</p>
-         <div v-html="this.summary"></div>
     </div>
 
-     <div class="w3-panel">
+    <div v-if=destCountry>
+    <p>Destination Country: {{this.destCountry}}</p>
+    <div v-html="this.summary"></div>
+    <div class="w3-panel">
         <div class="w3-row-padding" style="margin:0 -16px">
         <div class="w3-third">
             <h5>Covid Cases across time</h5>
-            <Charts :countryProp = "destCountry"/>
+            <Charts1 :countryProp = "destCountry"/>
         </div>
     <div class="w3-twothird">
 
@@ -98,31 +99,7 @@
                    For more information, please refer to : <div v-html="this.link"></div>
     </div>
   <hr>
-</body>
-</html>    
-</template>
-
-<script>
-    console.log("In EnterDestination")
-    import SearchAutocomplete from '@/components/SearchAutocomplete.vue'
-    import Charts from '@/components/Charts.vue'
-    export default {
-        name: 'EnterDestination',
-        
-        components: {
-            SearchAutocomplete,
-            Charts
-        },
-        data() {
-            return {
-                countryCode:"",
-                destCountry:"",
-                diseaseLevel:"",
-                diseaseDate:"",
-                cases:"",
-                caseDate:"",
-                summary:"",
-                document:this.doucment
+  </div>
 
             }
         },
@@ -144,7 +121,6 @@
                 } catch {
                     this.countryCode = "error"
                 }
-
                 const Amadeus = require("amadeus")
                 const amadeus = new Amadeus({
                 clientId: 'uDGFRwqjN9TMyagU3pwL4Yv53iUZzXN3',
@@ -211,3 +187,9 @@
         font-weight: bolder;
     }
 </style>
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs

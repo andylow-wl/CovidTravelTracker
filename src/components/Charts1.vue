@@ -30,7 +30,7 @@ const db = getFirestore(firebaseApp);
 
 export default {
 
-    name:'Charts',
+    name:'Charts1',
     props: {
        countryProp: String
     },
@@ -39,7 +39,7 @@ export default {
             chartdata: {},
             weekData: {},
             twoWeekData: {},
-            selected: "",
+            selected: "Last Week",
             country: this.countryProp
 
         }
