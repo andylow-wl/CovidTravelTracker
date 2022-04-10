@@ -53,42 +53,45 @@ export default {
 
 },
     watch: {
-        
-        countryProp: async function(x) {
-            const self = this
-            console.log("prop changed:" + x)
-            this.country = x
-            let obj = new Object();
-            //change "Australia" to self.country
-            let z = await getDocs(collection(db, x));
-            z.forEach((d) => obj[d.data().date] = d.data().Cases);         
-            let date = []
-            let cases = []
-            let casesDaily = []
-            z.forEach((d) => date.push(d.data().date))
-            z.forEach((d) => cases.push(d.data().Cases))
-            console.log("cases")
-            console.log(cases)
-            for (let i = 1; i < cases.length; i++) {
-                casesDaily[i] = cases[i] - cases[i - 1]
-            }
-            let monthData = new Object();
-            for (let i = 1; i < cases.length; i++) {
-                monthData[date[i]] = casesDaily[i]
-            }
-            self.chartdata = monthData
 
-            let weekData = new Object();
-            for (let i = 7; i > 0; i--){
-                weekData[date[date.length-i]] = casesDaily[casesDaily.length-i]
-            }
-            let twoWeekData = new Object();
-            for (let i = 14; i > 0; i--){
-                twoWeekData[date[date.length-i]] = casesDaily[casesDaily.length-i]
-            }
-            self.weekData = weekData
-            self.twoWeekData = twoWeekData
+        countryProp: {
+            immediate:true,
+            async handler(x){
+                const self = this
+                console.log("prop changed:" + x)
+                this.country = x
+                let obj = new Object();
+                //change "Australia" to self.country
+                let z = await getDocs(collection(db, x));
+                z.forEach((d) => obj[d.data().date] = d.data().Cases);         
+                let date = []
+                let cases = []
+                let casesDaily = []
+                z.forEach((d) => date.push(d.data().date))
+                z.forEach((d) => cases.push(d.data().Cases))
+                console.log("cases")
+                console.log(cases)
+                for (let i = 1; i < cases.length; i++) {
+                    casesDaily[i] = cases[i] - cases[i - 1]
+                }
+                let monthData = new Object();
+                for (let i = 1; i < cases.length; i++) {
+                    monthData[date[i]] = casesDaily[i]
+                }
+                self.chartdata = monthData
 
+                let weekData = new Object();
+                for (let i = 7; i > 0; i--){
+                    weekData[date[date.length-i]] = casesDaily[casesDaily.length-i]
+                }
+                let twoWeekData = new Object();
+                for (let i = 14; i > 0; i--){
+                    twoWeekData[date[date.length-i]] = casesDaily[casesDaily.length-i]
+                }
+                self.weekData = weekData
+                self.twoWeekData = twoWeekData
+
+            }
         }
     }
 }

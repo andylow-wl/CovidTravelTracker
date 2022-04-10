@@ -39,7 +39,7 @@
         </form>
     </div>
 
-    <div v-if=destCountry>
+    <div v-if="destCountry!=''">
     <h1>{{this.destCountry}}</h1>
     <div class = "w3 panel">
         <div class="w3-row-padding" style="display: flex; height: auto;"> 
@@ -173,8 +173,8 @@ export default {
                 }
                 const Amadeus = require("amadeus")
                 const amadeus = new Amadeus({
-                clientId: 'uDGFRwqjN9TMyagU3pwL4Yv53iUZzXN3',
-                clientSecret: 'FjthFeiXCnw4KX9D'
+                clientId: 'jnpLUyBNgI69r2zjrq9YvpGoGpYgqBfN',
+                clientSecret: 'i6MGsiliNmFhoJO5'
                 });
                 const query = {
                     countryCode: this.countryCode
