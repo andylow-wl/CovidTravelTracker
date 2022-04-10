@@ -1,12 +1,12 @@
 import {initializeApp} from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC-AWZuIhq9iGgzelO2WdzaDwDnz27gVCk",
-  authDomain: "covidtraveltracker-29e50.firebaseapp.com",
-  projectId: "covidtraveltracker-29e50",
-  storageBucket: "covidtraveltracker-29e50.appspot.com",
-  messagingSenderId: "633534677200",
-  appId: "1:633534677200:web:f3d76f17ce27c3acdf1ed5"
+  apiKey: "AIzaSyDKwF1LgU9B3MZnthkINGrHTfCjhTRLfdg",
+  authDomain: "covid-travel-tracker-fe6f2.firebaseapp.com",
+  projectId: "covid-travel-tracker-fe6f2",
+  storageBucket: "covid-travel-tracker-fe6f2.appspot.com",
+  messagingSenderId: "84809612180",
+  appId: "1:84809612180:web:069c6dbf5fb56c96346d81"
 };
 // Initialize Firebase
  const firebaseApp = initializeApp(firebaseConfig);

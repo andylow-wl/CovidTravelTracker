@@ -42,22 +42,21 @@
     <div v-if=destCountry>
     <h1>{{this.destCountry}}</h1>
     <div class = "w3 panel">
-        <div class="w3-row-padding" style="display: flex; height: 35em;"> 
-            <div class="w3-half w3-striped w3-white" style="margin: auto; min-height: 100%">
-                <div v-html="this.summary" style="display: inline-block; position: relative; text-align: justify; padding: 1em;"></div>
-            </div>
-            <div class="w3-half">
+        <div class="w3-row-padding" style="display: flex; height: auto;"> 
                 <table class="w3-table w3-striped w3-white" style="margin: auto; min-height: 100%">
                 <tr>
+                    <td><i class="fa fa-list-alt w3-text-yellow w3-large"></i></td>
+                    <td><b>Summary : </b><div v-html="this.summary" style="text-align: justify; padding: 1em;"></div></td>
+                </tr>
+                <tr>
                     <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-                    <td><b>Mask Policy : </b><div v-html="this.mask" style="display: inline-block; position: relative; text-align: justify; padding: 1em;"></div> </td>
+                    <td><b>Mask Policy : </b><div v-html="this.mask" style="text-align: justify; padding: 1em;"></div> </td>
                 </tr>
                 <tr>
                     <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-                    <td><b> Tracing Application Requirement : </b><div v-html="this.tracing" style="display: inline-block; position: relative; text-align: justify; padding: 1em; height: 100%"></div> </td>
+                    <td><b> Tracing Application Requirement : </b><div v-html="this.tracing" style="text-align: justify; padding: 1em;"></div> </td>
                 </tr>
                 </table>
-            </div>
         </div>
     </div>
     <div class="w3-panel" style="padding: 1em;">
@@ -76,6 +75,10 @@
                 <tr>
                     <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
                     <td><b>Number of active cases : </b>{{this.cases}} </td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+                    <td><b>Infection rate : </b>{{this.diseaseRate}} </td>
                 </tr>
                 <tr>
                     <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
@@ -181,6 +184,7 @@ export default {
                     x => {
                         //console.log(x.data)
                         this.diseaseLevel = x.data.diseaseInfection.level
+                        this.diseaseRate = x.data.diseaseInfection.rate
                         this.diseaseDate = x.data.diseaseInfection.date 
                         this.cases = x.data.diseaseCases.confirmed 
                         this.caseDate = x.data.diseaseCases.date
@@ -202,7 +206,7 @@ export default {
                         //this.maskDate = x.data.areaAccessRestriction.mask.date 
                         this.quarantine =  x.data.areaAccessRestriction.quarantineModality.text
                         this.tracing =  x.data.areaAccessRestriction.tracingApplication.text
-                        this.link = "<a href=\"" + x.data.areaPolicy.referenceLink + "\" target=\"_blank\" rel=\"noopener\">"+  x.data.areaPolicy.referenceLink + "\"</a>" 
+                        this.link = "<a href=\"" + x.data.areaPolicy.referenceLink + "\" target=\"_blank\" rel=\"noopener\">"+  x.data.areaPolicy.referenceLink + "</a>" 
                     });
                 
             },
@@ -270,7 +274,7 @@ export default {
         margin: auto;
         top: 50%;
         width: 200px;
-        /* transform: translateY(20%); */
+        transform: translateY(30%);
         transition: all 0.5s;
         cursor: pointer;
     }
