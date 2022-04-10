@@ -78,6 +78,10 @@
                     <td><b>Number of active cases : </b>{{this.cases}} </td>
                 </tr>
                 <tr>
+                    <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+                    <td><b>Infection rate : </b>{{this.diseaseRate}} </td>
+                </tr>
+                <tr>
                     <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
                     <td><b>Percentage fully vaccinated : </b>{{this.dose}}%</td>
                 </tr>
@@ -90,6 +94,7 @@
         </div>
     </div>
     <br>
+    
 
     <div class = "w3 panel"> 
         <h1>Travel Requirements</h1>
@@ -179,30 +184,32 @@ export default {
             
                 amadeus.client.get('/v1/duty-of-care/diseases/covid19-area-report', query).then(
                     x => {
-                        //console.log(x.data)
+                        console.log(x.data)
                         this.diseaseLevel = x.data.diseaseInfection.level
-                        this.diseaseDate = x.data.diseaseInfection.date 
+                        this.diseaseRate = x.data.diseaseInfection.rate
                         this.cases = x.data.diseaseCases.confirmed 
-                        this.caseDate = x.data.diseaseCases.date
                         this.hotSpot = x.data.hotspots
                         this.dose = x.data.areaVaccinated[1].percentage
-                        this.doseDate = x.data.areaVaccinated[1].date
                         this.summary = x.data.summary
                         this.document =x.data.areaAccessRestriction.declarationDocuments.text
-                        //this.documentDate =   x.data.areaAccessRestriction.declarationDocuments.date 
                         this.testing =  x.data.areaAccessRestriction.diseaseTesting.text
-                        //this.testingDate =  x.data.areaAccessRestriction.diseaseTesting.date 
                         this.vaccine =  x.data.areaAccessRestriction.diseaseVaccination.qualifiedVaccines
-                        //this.vaccineDate =  x.data.areaAccessRestriction.diseaseVaccination.date 
                         this.entryRestriction =  x.data.areaAccessRestriction.entry.text
-                        //this.entryRestrictionDate =  x.data.areaAccessRestriction.entry.date 
                         this.exitRestriction =  x.data.areaAccessRestriction.exit.text
-                        //this.exitRestrictionDate =  x.data.areaAccessRestriction.exit.date 
                         this.mask =  x.data.areaAccessRestriction.mask.text
-                        //this.maskDate = x.data.areaAccessRestriction.mask.date 
                         this.quarantine =  x.data.areaAccessRestriction.quarantineModality.text
                         this.tracing =  x.data.areaAccessRestriction.tracingApplication.text
                         this.link = "<a href=\"" + x.data.areaPolicy.referenceLink + "\" target=\"_blank\" rel=\"noopener\">"+  x.data.areaPolicy.referenceLink + "\"</a>" 
+
+                        //this.maskDate = x.data.areaAccessRestriction.mask.date
+                        //this.diseaseDate = x.data.diseaseInfection.date
+                        //this.caseDate = x.data.diseaseCases.date  
+                        //this.doseDate = x.data.areaVaccinated[1].date
+                        //this.documentDate =   x.data.areaAccessRestriction.declarationDocuments.date 
+                        //this.testingDate =  x.data.areaAccessRestriction.diseaseTesting.date 
+                        //this.vaccineDate =  x.data.areaAccessRestriction.diseaseVaccination.date 
+                        //this.entryRestrictionDate =  x.data.areaAccessRestriction.entry.date
+                        //this.exitRestrictionDate =  x.data.areaAccessRestriction.exit.date 
                     });
                 
             },
