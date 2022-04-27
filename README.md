@@ -1,5 +1,4 @@
 # Covid Travel Tracker
-- Part of BT3103 Project
 - Take note that the project uses the free version of Amadeus API. Hence, the data are not up to date and the API has limited queries.
 - Refer to the original github link: https://github.com/amadeus4dev/amadeus-node
 - Refer to the API documentation : https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference
