@@ -44,3 +44,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Home Page
+### Select your destination country 
+![](https://github.com/andylow1704/CovidTravelTracker/blob/master/Images/Home_Page.PNG)
+![](https://github.com/andylow1704/CovidTravelTracker/blob/master/Images/Page1.PNG)
+![](https://github.com/andylow1704/CovidTravelTracker/blob/master/Images/Page2.PNG)
+
+# Comparison Page
+![](https://github.com/andylow1704/CovidTravelTracker/blob/master/Images/Compare.PNG)
